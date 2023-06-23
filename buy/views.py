@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from sell.models import *
-from sell.views import sell_home
+from home.models import Home
 #from django.http import HttpResponse
 # Create your views here.
 
@@ -11,6 +11,6 @@ def buy_home(request):
 
 def contact_seller(request, id):
     queryset = Sell_product.objects.get(id=id)
+    #queryset2 = Home.objects.all() 
     context = {'product': queryset}
     return render(request, 'buy/contact_seller.html', context)
-

@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
-
+from . models import *
 # Create your views here.
 
 def home(request):
@@ -17,5 +17,9 @@ def contact(request):
         print(contact_number)
         print(email_address)
         redirect('home/home.html')
-    
+
+        Home.objects.create(
+            contact_number=contact_number,
+            email_address=email_address,
+            )
     return render(request, 'home/contact.html')
