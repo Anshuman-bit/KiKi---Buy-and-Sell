@@ -1,7 +1,10 @@
 from django.shortcuts import render, redirect
-from . models import *
+from .models import *
+from django.http import HttpResponse
+from django.contrib.auth.models import User
 
-#from django.http import HttpResponse
+
+# from django.http import HttpResponse
 # Create your views here.
 
 def sell_home(request):
@@ -12,16 +15,16 @@ def sell_home(request):
         product_location = request.POST.get("product_location")
         product_image = request.FILES.get("product_image")
         contact_number = request.POST.get("contact_number")
-        #email_address = request.POST.get("email_address")
-        
+        # email_address = request.POST.get("email_address")
+
         print(product_name)
         print(product_description)
         print(product_ownership)
         print(product_location)
         print(product_image)
         print(contact_number)
-        
-        Sell_product.objects.create( 
+
+        Sell_product.objects.create(
 
             product_name=product_name,
             product_description=product_description,
@@ -35,3 +38,27 @@ def sell_home(request):
 
     return render(request, 'sell/sell_home.html')
 
+
+def register(request):
+    if request.method == "POST":
+        first_name = request.POST.get("first_name")
+        last_name = request.POST.get("last_name")
+        email = request.POST.get("email_id")
+
+        print(first_name)
+        print(last_name)
+        print(email)
+
+        User.objects.create(
+            first_name=first_name,
+            last_name=last_name,
+            #email_id=email
+        )
+
+        return redirect('/register/')
+
+    return render(request, 'sell/register.html')
+
+
+def login(request):
+    return HttpResponse("<h1>Login page</h1>")
