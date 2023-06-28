@@ -1,3 +1,4 @@
+from django.contrib import messages
 from django.shortcuts import render, redirect
 from .models import *
 from django.http import HttpResponse
@@ -43,16 +44,16 @@ def register(request):
     if request.method == "POST":
         first_name = request.POST.get("first_name")
         last_name = request.POST.get("last_name")
-        email = request.POST.get("email_id")
+        username = request.POST.get("username")
+        password = request.POST.get("password")
 
-        print(first_name)
-        print(last_name)
-        print(email)
+        print(first_name, last_name, username, password)
 
         User.objects.create(
             first_name=first_name,
             last_name=last_name,
-            #email_id=email
+            username=username,
+            password=password
         )
 
         return redirect('/register/')
