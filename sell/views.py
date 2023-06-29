@@ -47,6 +47,11 @@ def register(request):
         username = request.POST.get("username")
         password = request.POST.get("password")
 
+        user = User.objects.filter(username=username)
+        if user.exists():
+            messages.warning(request, "Username already taken.")
+            return redirect('/register/')
+
         print(first_name, last_name, username, password)
 
         User.objects.create(
@@ -55,8 +60,10 @@ def register(request):
             username=username,
             password=password
         )
+        messages.info(request, 'Account created successfully !')
 
-        return redirect('/register/')
+        return redirect('/register')
+    # Encrypted password - empty(for now)
 
     return render(request, 'sell/register.html')
 
