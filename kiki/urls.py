@@ -24,4 +24,5 @@ urlpatterns = [
     path('', include('home.urls')),
     path('buy/', include('buy.urls')),
     path('sell/', include('sell.urls')),
+    path('update-product/<id>/', views.update_product, name="update-product"),
 ]

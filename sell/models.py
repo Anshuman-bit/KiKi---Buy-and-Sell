@@ -14,7 +14,7 @@ OWNERSHIP_CHOICES = (
 
 
 class Sell_product(models.Model):
-    user = ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True)
+    user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True)
     product_name = models.CharField(max_length=100)
     product_description = models.TextField()
     product_ownership = models.CharField(max_length=50, choices=OWNERSHIP_CHOICES, null=False)
@@ -26,3 +26,6 @@ class Sell_product(models.Model):
 
     def __str__(self):
         return self.product_name
+
+    def __dir__(self):
+        return self.user
