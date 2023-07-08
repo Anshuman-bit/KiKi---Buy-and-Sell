@@ -10,6 +10,8 @@
     <title>KiKi - Register</title>
 </head>
 <body>
+    <div class="container">
+    </div>
 <form class="col-6 mx-auto card p-5 shadow-lg m-5" method="post" action="">
     {% csrf_token %}
     <h1>Register yourself at KiKi !</h1>
@@ -52,6 +54,8 @@
 
 
     <button type="submit" class="btn btn-success">Submit</button>
+
+    <p>Already have an account ? <a href="{% url 'kiki-login' %}">Login</a></p>
 </form>
 </body>
 </html>

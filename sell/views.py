@@ -40,37 +40,6 @@ def sell_home(request):
     return render(request, 'sell/sell_home.html')
 
 
-def register(request):
-    if request.method == "POST":
-        first_name = request.POST.get("first_name")
-        last_name = request.POST.get("last_name")
-        username = request.POST.get("username")
-        password = request.POST.get("password")
-
-        user = User.objects.filter(username=username)
-        if user.exists():
-            messages.warning(request, "Username already taken.")
-            return redirect('/register/')
-
-        print(first_name, last_name, username, password)
-
-        User.objects.create(
-            first_name=first_name,
-            last_name=last_name,
-            username=username,
-            password=password
-        )
-        messages.info(request, 'Account created successfully !')
-
-        return redirect('/register')
-    # Encrypted password - empty(for now)
-
-    return render(request, 'sell/register.html')
-
-
-def login(request):
-    return HttpResponse("<h1>Login page</h1>")
-
 
 # Updating product -
 def update_product(request, id):

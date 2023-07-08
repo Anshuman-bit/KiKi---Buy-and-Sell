@@ -19,8 +19,6 @@ from sell import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('register/', views.register, name="kiki-register"),
-    path('login/', views.login, name="kiki-login"),
     path('', include('home.urls')),
     path('buy/', include('buy.urls')),
     path('sell/', include('sell.urls')),
